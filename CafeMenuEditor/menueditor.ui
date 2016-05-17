@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MenuItemEditor</class>
- <widget class="QWidget" name="MenuItemEditor">
+ <class>MenuEditor</class>
+ <widget class="QWidget" name="MenuEditor">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>399</width>
-    <height>311</height>
+    <width>400</width>
+    <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -33,26 +33,16 @@
      <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>Description:</string>
+        <string>Children Count:</string>
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QLineEdit" name="lineEdit_2"/>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Pice:</string>
+        <string>0</string>
        </property>
       </widget>
-     </item>
-     <item>
-      <widget class="QDoubleSpinBox" name="doubleSpinBox"/>
      </item>
     </layout>
    </item>
