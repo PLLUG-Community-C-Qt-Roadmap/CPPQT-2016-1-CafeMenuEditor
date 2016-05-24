@@ -60,7 +60,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QTextEdit" name="textEdit"/>
+      <widget class="QTextEdit" name="menuTextEdit"/>
      </widget>
     </item>
    </layout>

@@ -2,12 +2,16 @@
 #include "ui_mainwindow.h"
 #include "menu.h"
 #include "menuitem.h"
+#include "visitor.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    generateMenu();
+    PrintVisitor print();
+
 }
 
 MainWindow::~MainWindow()
@@ -20,7 +24,9 @@ void MainWindow::generateMenu()
     fairyMe = new Menu("CafeFairy");
     MenuItem *menuItem1 = new MenuItem("Water", 10, "water");
     MenuItem *menuItem2 = new MenuItem("juice", 15, "squized fruites");
-
-
+    fairyMe->addMenuItem(menuItem1);
+    fairyMe->addMenuItem(menuItem2);
 }
+
+
 

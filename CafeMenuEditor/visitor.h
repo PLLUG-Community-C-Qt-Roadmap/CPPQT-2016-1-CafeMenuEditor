@@ -3,6 +3,7 @@
 
 //#include "menu.h"
 
+class QTextEdit;
 class Menu;
 class MenuItem;
 
@@ -17,9 +18,12 @@ public:
 class PrintVisitor : public Visitor
 {
 public:
-    PrintVisitor();
+    PrintVisitor(QTextEdit *textedit);
     void visit(Menu *) override;
     void visit(MenuItem *) override;
+private:
+    QTextEdit *mTextEdit;
+
 };
 
 #endif // VISITOR_H

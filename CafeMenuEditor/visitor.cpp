@@ -11,7 +11,9 @@ Visitor::Visitor()
 }
 
 
-PrintVisitor::PrintVisitor()
+
+PrintVisitor::PrintVisitor(QTextEdit *textedit):
+    mTextEdit(textedit)
 {
 
 }
