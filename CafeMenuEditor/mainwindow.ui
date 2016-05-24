@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>423</width>
-    <height>286</height>
+    <width>496</width>
+    <height>334</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,8 +20,11 @@
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout">
+        <property name="spacing">
+         <number>6</number>
+        </property>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout" stretch="2,0">
           <item>
@@ -51,8 +54,8 @@
           <property name="currentIndex">
            <number>0</number>
           </property>
-          <widget class="QWidget" name="page_3"/>
-          <widget class="QWidget" name="page_4"/>
+          <widget class="MenuEditor" name="page"/>
+          <widget class="MenuItemEditor" name="page_2"/>
          </widget>
         </item>
        </layout>
@@ -67,7 +70,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>423</width>
+     <width>496</width>
      <height>21</height>
     </rect>
    </property>
@@ -153,6 +156,20 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>MenuEditor</class>
+   <extends>QWidget</extends>
+   <header>menueditor.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MenuItemEditor</class>
+   <extends>QWidget</extends>
+   <header>menuitemeditor.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
