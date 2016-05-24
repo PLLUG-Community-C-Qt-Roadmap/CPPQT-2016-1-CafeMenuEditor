@@ -2,8 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-class Menu;
+#include "abstractmenuitem.h"
 
+class Menu;
 
 namespace Ui {
     class MainWindow;
@@ -19,12 +20,18 @@ public:
     ~MainWindow();
 
 
+private slots:
+    void addMenuItem();
+    void selectMenuItem(int index);
+
 private:
     void generateMenu();
 
+    void refreshMenu();
+
 private:
     Ui::MainWindow *ui;
-    Menu *fairyMe;
+    Menu *mFairyMe;
 
 };
 

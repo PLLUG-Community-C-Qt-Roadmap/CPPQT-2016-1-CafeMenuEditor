@@ -19,7 +19,9 @@ SOURCES += main.cpp\
     abstractmenuitem.cpp \
     menu.cpp \
     menuitem.cpp \
-    visitor.cpp
+    visitor.cpp \
+    fillcomboboxvisitor.cpp \
+    editvisitorwidget.cpp
 
 HEADERS  += mainwindow.h \
     menuitemeditor.h \
@@ -27,8 +29,11 @@ HEADERS  += mainwindow.h \
     abstractmenuitem.h \
     menu.h \
     menuitem.h \
-    visitor.h
+    visitor.h \
+    fillcomboboxvisitor.h \
+    editvisitorwidget.h
 
 FORMS    += mainwindow.ui \
     menuitemeditor.ui \
-    menueditor.ui
+    menueditor.ui \
+    editvisitorwidget.ui

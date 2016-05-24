@@ -21,7 +21,7 @@
        <enum>Qt::Horizontal</enum>
       </property>
       <widget class="QWidget" name="layoutWidget">
-       <layout class="QVBoxLayout" name="verticalLayout">
+       <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
         <property name="spacing">
          <number>6</number>
         </property>
@@ -50,13 +50,7 @@
          </layout>
         </item>
         <item>
-         <widget class="QStackedWidget" name="stackedWidget">
-          <property name="currentIndex">
-           <number>0</number>
-          </property>
-          <widget class="MenuEditor" name="page"/>
-          <widget class="MenuItemEditor" name="page_2"/>
-         </widget>
+         <widget class="EditVisitorWidget" name="editVisitorWidget" native="true"/>
         </item>
        </layout>
       </widget>
@@ -158,15 +152,9 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>MenuEditor</class>
+   <class>EditVisitorWidget</class>
    <extends>QWidget</extends>
-   <header>menueditor.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>MenuItemEditor</class>
-   <extends>QWidget</extends>
-   <header>menuitemeditor.h</header>
+   <header>editvisitorwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
