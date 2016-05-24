@@ -15,11 +15,19 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     menuitemeditor.cpp \
-    menueditor.cpp
+    menueditor.cpp \
+    abstractmenuitem.cpp \
+    menu.cpp \
+    menuitem.cpp \
+    visitor.cpp
 
 HEADERS  += mainwindow.h \
     menuitemeditor.h \
-    menueditor.h
+    menueditor.h \
+    abstractmenuitem.h \
+    menu.h \
+    menuitem.h \
+    visitor.h
 
 FORMS    += mainwindow.ui \
     menuitemeditor.ui \

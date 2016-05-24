@@ -1,7 +1,9 @@
 #include "menuitem.h"
 
-MenuItem::MenuItem(std::string name) :
-    AbstractMenuItem(name)
+MenuItem::MenuItem(std::string name, double price, std::string ingredients)
+    : AbstractMenuItem (name),
+      mPrice(price),
+      mIngredients(ingredients)
 {
 
 }
