@@ -23,11 +23,12 @@ public:
 private slots:
     void addMenuItem();
     void selectMenuItem(int index);
+    void addNew();
 
 private:
     void generateMenu();
-
     void refreshMenu();
+
 
 private:
     Ui::MainWindow *ui;
