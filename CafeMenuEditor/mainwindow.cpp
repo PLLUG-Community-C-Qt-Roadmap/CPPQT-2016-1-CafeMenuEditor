@@ -57,10 +57,21 @@ void MainWindow::selectMenuItem(int index)
 void MainWindow::generateMenu()
 {
     mFairyMe = new Menu("CafeFairy");
+
+    Menu *drinks = new Menu("Drinks");
     MenuItem *menuItem1 = new MenuItem("Water", 10, "water");
     MenuItem *menuItem2 = new MenuItem("juice", 15, "squized fruites");
-    mFairyMe->addMenuItem(menuItem1);
-    mFairyMe->addMenuItem(menuItem2);
+    drinks->addMenuItem(menuItem1);
+    drinks->addMenuItem(menuItem2);
+
+    Menu *deserts = new Menu("Deserts");
+    MenuItem *iceCream = new MenuItem("Ice Cream", 10, "Chemical ingredients");
+    MenuItem *cake = new MenuItem("Cake", 20, "Chemical ingredients");
+    deserts->addMenuItem(iceCream);
+    deserts->addMenuItem(cake);
+
+    mFairyMe->addMenuItem(drinks);
+    mFairyMe->addMenuItem(deserts);
 }
 
 void MainWindow::refreshMenu()
