@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include <QVariant>
+#include <QDebug>
 
 #include "menu.h"
 #include "menuitem.h"
@@ -17,10 +18,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     qRegisterMetaType<AbstractMenuItem *>("AbstractMenuItem *");
     connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(addMenuItem()));
-    if(ui->comboBox->currentIndex() !=-1)
-    {
+//    if(ui->comboBox->currentIndex() !=-1)
+//    {
     connect(ui->comboBox, SIGNAL(currentIndexChanged(int)),
-            this, SLOT(selectMenuItem(int)));}
+            this, SLOT(selectMenuItem(int)));
+//    }
     connect(ui->actionNew,SIGNAL(triggered()),this,SLOT(addNew()));
 
     generateMenu();
@@ -46,9 +48,11 @@ void MainWindow::addMenuItem()
     refreshMenu();
 }
 
-#include <QDebug>
 void MainWindow::selectMenuItem(int index)
 {
+//    qDebug() << index;
+    if (index < 0)
+        return;
     QVariant value = ui->comboBox->itemData(index);
     AbstractMenuItem *item = value.value<AbstractMenuItem *>();
     item->accept(*ui->editVisitorWidget);
