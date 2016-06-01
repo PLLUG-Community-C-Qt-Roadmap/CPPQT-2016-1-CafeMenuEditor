@@ -1,9 +1,20 @@
 #include "menu.h"
 
+#include <iostream>
+
 Menu::Menu(std::string name) :
     AbstractMenuItem(name)
 {
 
+}
+
+Menu::~Menu()
+{
+    std::cout << "Deleted menu: " << name() << std::endl;
+    for (AbstractMenuItem *item: items())
+    {
+        delete item;
+    }
 }
 
 std::vector<AbstractMenuItem *> Menu::items() const

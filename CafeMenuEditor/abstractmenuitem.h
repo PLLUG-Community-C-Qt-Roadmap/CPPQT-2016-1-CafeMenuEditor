@@ -10,7 +10,7 @@ class AbstractMenuItem
 {
 public:
     AbstractMenuItem(std::string);
-
+    virtual ~AbstractMenuItem();
     std::string name() const;
     virtual void accept(Visitor &v) = 0;
 //    std::vector<AbstractMenuItem*> items() const;

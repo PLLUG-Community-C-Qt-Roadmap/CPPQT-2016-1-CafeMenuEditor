@@ -8,7 +8,7 @@ class MenuItem : public AbstractMenuItem
 {
 public:
     MenuItem(std::string name = std::string(), double price = 0.0, std::string ingredients = std::string());
-
+    ~MenuItem();
     double price() const;
     std::string description() const;
     std::string ingredients() const;
