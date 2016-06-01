@@ -17,8 +17,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     qRegisterMetaType<AbstractMenuItem *>("AbstractMenuItem *");
     connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(addMenuItem()));
+    if(ui->comboBox->currentIndex() !=-1)
+    {
     connect(ui->comboBox, SIGNAL(currentIndexChanged(int)),
-            this, SLOT(selectMenuItem(int)));
+            this, SLOT(selectMenuItem(int)));}
+    connect(ui->actionNew,SIGNAL(triggered()),this,SLOT(addNew()));
 
     generateMenu();
     QVariant val = QVariant::fromValue((AbstractMenuItem *)mFairyMe);
@@ -28,7 +31,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     PrintVisitor consolePrintVisitor;
     test->accept(consolePrintVisitor);
-
 }
 
 MainWindow::~MainWindow()
@@ -72,6 +74,27 @@ void MainWindow::refreshMenu()
     FillComboBoxVisitor fillVisitor(ui->comboBox);
     mFairyMe->accept(fillVisitor);
 }
+
+void MainWindow::addNew()
+{
+    ui->menuTextEdit->clear();
+    ui->comboBox->clear();
+
+//     якщо воно чиститься - поточний обраний елемент міняється
+//    Від:
+//    Alex Chmykhalo
+//     ну тобто не стає ніяких елементів
+//    Від:
+//    Alex Chmykhalo
+//     і можливо воно викликає слот з якимось значенням типу 0, чи -1.... ну не важливо.... якщо ми в комбобоксі мали ті всі елементи і до кодного був прикріплений вказівник
+//    Від:
+//    Alex Chmykhalo
+//     і тут ні одного елемента не стало
+//    пробуй подебагай, скоріше за все проблема така, як каже Сашко, десь в слоті selectMenuItem стає поганий вказівник на меню або на меню айтему
+
+
+}
+
 
 
 
