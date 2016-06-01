@@ -92,8 +92,12 @@ void MainWindow::refreshMenu()
 
 void MainWindow::addNew()
 {
-    ui->menuTextEdit->clear();
-    ui->comboBox->clear();
+//    ui->menuTextEdit->clear();
+//    ui->comboBox->clear();
+    delete mFairyMe;
+    mFairyMe = new Menu("New Cafe Menu");
+    refreshMenu();
+
 
 //     якщо воно чиститься - поточний обраний елемент міняється
 //    Від:
