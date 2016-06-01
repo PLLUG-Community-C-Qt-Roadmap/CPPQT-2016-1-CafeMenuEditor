@@ -16,10 +16,12 @@ EditVisitorWidget::~EditVisitorWidget()
 
 void EditVisitorWidget::visit(Menu *menu)
 {
+    Q_UNUSED(menu);
     ui->stackedWidget->setCurrentWidget(ui->menuEditPage);
 }
 
 void EditVisitorWidget::visit(MenuItem *item)
 {
+    Q_UNUSED(item);
     ui->stackedWidget->setCurrentWidget(ui->menuItemEditPage);
 }
