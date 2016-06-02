@@ -13,12 +13,9 @@ public:
     virtual ~AbstractMenuItem();
     std::string name() const;
     virtual void accept(Visitor &v) = 0;
-//    std::vector<AbstractMenuItem*> items() const;
-//    void addMenuItem(AbstractMenuItem*);
 
 private:
     std::string mName;
-//    std::vector<AbstractMenuItem*> mItems;
 };
 
 #endif // ABSTRACTMENUITEM_H

@@ -18,11 +18,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     qRegisterMetaType<AbstractMenuItem *>("AbstractMenuItem *");
     connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(addMenuItem()));
-//    if(ui->comboBox->currentIndex() !=-1)
-//    {
     connect(ui->comboBox, SIGNAL(currentIndexChanged(int)),
             this, SLOT(selectMenuItem(int)));
-//    }
     connect(ui->actionNew,SIGNAL(triggered()),this,SLOT(addNew()));
 
     generateMenu();
@@ -50,7 +47,6 @@ void MainWindow::addMenuItem()
 
 void MainWindow::selectMenuItem(int index)
 {
-//    qDebug() << index;
     if (index < 0)
         return;
     QVariant value = ui->comboBox->itemData(index);
@@ -63,10 +59,10 @@ void MainWindow::generateMenu()
     mFairyMe = new Menu("CafeFairy");
 
     Menu *drinks = new Menu("Drinks");
-    MenuItem *menuItem1 = new MenuItem("Water", 10, "water");
-    MenuItem *menuItem2 = new MenuItem("juice", 15, "squized fruites");
-    drinks->addMenuItem(menuItem1);
-    drinks->addMenuItem(menuItem2);
+    MenuItem *water = new MenuItem("Water", 10, "water");
+    MenuItem *juice = new MenuItem("Juice", 15, "squized fruites");
+    drinks->addMenuItem(water);
+    drinks->addMenuItem(juice);
 
     Menu *deserts = new Menu("Deserts");
     MenuItem *iceCream = new MenuItem("Ice Cream", 10, "Chemical ingredients");
@@ -92,13 +88,9 @@ void MainWindow::refreshMenu()
 
 void MainWindow::addNew()
 {
-//    ui->menuTextEdit->clear();
-//    ui->comboBox->clear();
     delete mFairyMe;
     mFairyMe = new Menu("New Cafe Menu");
     refreshMenu();
-
-
 //     якщо воно чиститься - поточний обраний елемент міняється
 //    Від:
 //    Alex Chmykhalo
