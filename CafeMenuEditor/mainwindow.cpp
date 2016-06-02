@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include <QVariant>
+#include <QDebug>
 
 #include "menu.h"
 #include "menuitem.h"
@@ -17,10 +18,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     qRegisterMetaType<AbstractMenuItem *>("AbstractMenuItem *");
     connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(addMenuItem()));
-    if(ui->comboBox->currentIndex() !=-1)
-    {
     connect(ui->comboBox, SIGNAL(currentIndexChanged(int)),
-            this, SLOT(selectMenuItem(int)));}
+            this, SLOT(selectMenuItem(int)));
     connect(ui->actionNew,SIGNAL(triggered()),this,SLOT(addNew()));
 
     generateMenu();
@@ -46,9 +45,10 @@ void MainWindow::addMenuItem()
     refreshMenu();
 }
 
-#include <QDebug>
 void MainWindow::selectMenuItem(int index)
 {
+    if (index < 0)
+        return;
     QVariant value = ui->comboBox->itemData(index);
     AbstractMenuItem *item = value.value<AbstractMenuItem *>();
     item->accept(*ui->editVisitorWidget);
@@ -57,10 +57,21 @@ void MainWindow::selectMenuItem(int index)
 void MainWindow::generateMenu()
 {
     mFairyMe = new Menu("CafeFairy");
-    MenuItem *menuItem1 = new MenuItem("Water", 10, "water");
-    MenuItem *menuItem2 = new MenuItem("juice", 15, "squized fruites");
-    mFairyMe->addMenuItem(menuItem1);
-    mFairyMe->addMenuItem(menuItem2);
+
+    Menu *drinks = new Menu("Drinks");
+    MenuItem *water = new MenuItem("Water", 10, "water");
+    MenuItem *juice = new MenuItem("Juice", 15, "squized fruites");
+    drinks->addMenuItem(water);
+    drinks->addMenuItem(juice);
+
+    Menu *deserts = new Menu("Deserts");
+    MenuItem *iceCream = new MenuItem("Ice Cream", 10, "Chemical ingredients");
+    MenuItem *cake = new MenuItem("Cake", 20, "Chemical ingredients");
+    deserts->addMenuItem(iceCream);
+    deserts->addMenuItem(cake);
+
+    mFairyMe->addMenuItem(drinks);
+    mFairyMe->addMenuItem(deserts);
 }
 
 void MainWindow::refreshMenu()
@@ -77,9 +88,9 @@ void MainWindow::refreshMenu()
 
 void MainWindow::addNew()
 {
-    ui->menuTextEdit->clear();
-    ui->comboBox->clear();
-
+    delete mFairyMe;
+    mFairyMe = new Menu("New Cafe Menu");
+    refreshMenu();
 //     якщо воно чиститься - поточний обраний елемент міняється
 //    Від:
 //    Alex Chmykhalo

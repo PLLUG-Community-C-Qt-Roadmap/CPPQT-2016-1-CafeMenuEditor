@@ -8,6 +8,7 @@ class Menu : public AbstractMenuItem
 {
 public:
     Menu(std::string);
+    ~Menu();
     std::vector<AbstractMenuItem*> items() const;
     void addMenuItem(AbstractMenuItem*);
     void accept(Visitor &) override;
