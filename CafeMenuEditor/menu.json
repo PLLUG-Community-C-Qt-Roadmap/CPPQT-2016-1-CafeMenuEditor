@@ -1,0 +1,73 @@
+{
+    "type": "Menu",
+    "title": "Cafe Menu",
+    "children": [
+        {
+            "type": "Menu",
+            "title": "Drinks",
+            "children": [
+                {
+                    "type": "Menu",
+                    "title": "Alco drinks",
+                    "children": [
+                        {
+                            "type": "MenuItem",
+                            "title": "Beer",
+                            "price": 5,
+                            "description": "Easy"
+                        },
+                        {
+                            "type": "MenuItem",
+                            "title": "Viski",
+                            "price": 10,
+                            "description": "Middle"
+                        },
+                        {
+                            "type": "MenuItem",
+                            "title": "Vodka",
+                            "price": 20,
+                            "description": "Hard"
+                        }
+                    ]
+                },
+                {
+                    "type": "Menu",
+                    "title": "Soft drinks",
+                    "children": [
+                        {
+                            "type": "MenuItem",
+                            "title": "Mineral Water",
+                            "price": 2,
+                            "description": "Carbonated water"
+                        },
+                        {
+                            "type": "MemuItem",
+                            "title": "Juice",
+                            "price": 6,
+                            "description": "Sweet juice"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Menu",
+            "title": "Deserts",
+            "children": [
+                {
+                    "type": "MenuItem",
+                    "title": "Ice Creame",
+                    "price": 10,
+                    "description": "Tasty ice cream"
+                },
+                {
+                    "type": "MenuItem",
+                    "title": "Cake",
+                    "price": 15,
+                    "description": "Tasty cake"
+                }
+            ]
+        }
+
+    ]
+} 
