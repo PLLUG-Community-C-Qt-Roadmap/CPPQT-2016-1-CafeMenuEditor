@@ -2,6 +2,10 @@
 #include "ui_mainwindow.h"
 
 #include <QVariant>
+#include <QFileDialog>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
 #include <QDebug>
 
 #include "menu.h"
@@ -21,6 +25,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->comboBox, SIGNAL(currentIndexChanged(int)),
             this, SLOT(selectMenuItem(int)));
     connect(ui->actionNew,SIGNAL(triggered()),this,SLOT(addNew()));
+
+    connect(ui->action_Open, SIGNAL(triggered(bool)), this, SLOT(open()));
 
     generateMenu();
     QVariant val = QVariant::fromValue((AbstractMenuItem *)mFairyMe);
@@ -91,19 +97,49 @@ void MainWindow::addNew()
     delete mFairyMe;
     mFairyMe = new Menu("New Cafe Menu");
     refreshMenu();
-//     якщо воно чиститься - поточний обраний елемент міняється
-//    Від:
-//    Alex Chmykhalo
-//     ну тобто не стає ніяких елементів
-//    Від:
-//    Alex Chmykhalo
-//     і можливо воно викликає слот з якимось значенням типу 0, чи -1.... ну не важливо.... якщо ми в комбобоксі мали ті всі елементи і до кодного був прикріплений вказівник
-//    Від:
-//    Alex Chmykhalo
-//     і тут ні одного елемента не стало
-//    пробуй подебагай, скоріше за все проблема така, як каже Сашко, десь в слоті selectMenuItem стає поганий вказівник на меню або на меню айтему
+}
 
+void MainWindow::loadMenu(const QJsonArray &jsonChildren, Menu *parent)
+{
+    for (int index = 0; index < jsonChildren.size(); index++)
+    {
+        QJsonObject child(jsonChildren[index].toObject());
+        if (child["type"].toString() == "Menu")
+        {
+            Menu *menu = new Menu(child["title"].toString().toStdString());
+            parent->addMenuItem(menu);
+            loadMenu(child["children"].toArray(), menu);
+        }
+        else
+        {
+            MenuItem *item = new MenuItem(
+                    child["title"].toString().toStdString(),
+                    child["price"].toDouble()
+                );
+            parent->addMenuItem(item);
+        }
+    }
+}
 
+void MainWindow::open()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, "Open File", QDir::currentPath(), "JSON files (*.json);;All files (*.*)");
+    if (fileName.isEmpty())
+    {
+        return;
+    }
+    QFile menuFile(fileName);
+    if (!menuFile.open(QIODevice::ReadOnly))
+    {
+        return;
+    }
+    QByteArray data = menuFile.readAll();
+    QJsonDocument doc(QJsonDocument::fromJson(data));
+    QJsonObject json(doc.object());
+    delete mFairyMe;
+    mFairyMe = new Menu(json["title"].toString().toStdString());
+    loadMenu(json["children"].toArray(), mFairyMe);
+    refreshMenu();
 }
 
 
