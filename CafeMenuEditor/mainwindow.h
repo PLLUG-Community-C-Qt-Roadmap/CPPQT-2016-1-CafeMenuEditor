@@ -29,7 +29,7 @@ private slots:
 private:
     void generateMenu();
     void refreshMenu();
-    void loadMenu(const QJsonArray &, Menu *);
+//    void loadMenu(const QJsonArray &, Menu *);
 
 private:
     Ui::MainWindow *ui;

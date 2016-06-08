@@ -10,6 +10,7 @@
 
 #include "menu.h"
 #include "menuitem.h"
+#include "menujsonloader.h"
 
 #include "visitor.h"
 #include "fillcomboboxvisitor.h"
@@ -89,28 +90,6 @@ void MainWindow::addNew()
     refreshMenu();
 }
 
-void MainWindow::loadMenu(const QJsonArray &jsonChildren, Menu *parent)
-{
-    for (int index = 0; index < jsonChildren.size(); index++)
-    {
-        QJsonObject child(jsonChildren[index].toObject());
-        if (child["type"].toString() == "Menu")
-        {
-            Menu *menu = new Menu(child["title"].toString().toStdString());
-            parent->addMenuItem(menu);
-            loadMenu(child["children"].toArray(), menu);
-        }
-        else
-        {
-            MenuItem *item = new MenuItem(
-                    child["title"].toString().toStdString(),
-                    child["price"].toDouble()
-                );
-            parent->addMenuItem(item);
-        }
-    }
-}
-
 void MainWindow::open()
 {
     QString fileName = QFileDialog::getOpenFileName(this, "Open File", QDir::currentPath(), "JSON files (*.json);;All files (*.*)");
@@ -118,17 +97,9 @@ void MainWindow::open()
     {
         return;
     }
-    QFile menuFile(fileName);
-    if (!menuFile.open(QIODevice::ReadOnly))
-    {
-        return;
-    }
-    QByteArray data = menuFile.readAll();
-    QJsonDocument doc(QJsonDocument::fromJson(data));
-    QJsonObject json(doc.object());
     delete mFairyMe;
-    mFairyMe = new Menu(json["title"].toString().toStdString());
-    loadMenu(json["children"].toArray(), mFairyMe);
+    MenuJsonLoader jsonLoader(fileName, this);
+    mFairyMe = jsonLoader.load();
     refreshMenu();
 }
 
