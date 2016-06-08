@@ -24,6 +24,7 @@ private slots:
     void selectMenuItem(int index);
     void addNew();
     void open();
+    void example();
 
 private:
     void generateMenu();

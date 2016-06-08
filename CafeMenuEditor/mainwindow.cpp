@@ -22,20 +22,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     qRegisterMetaType<AbstractMenuItem *>("AbstractMenuItem *");
     connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(addMenuItem()));
-    connect(ui->comboBox, SIGNAL(currentIndexChanged(int)),
-            this, SLOT(selectMenuItem(int)));
+    connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(selectMenuItem(int)));
     connect(ui->actionNew,SIGNAL(triggered()),this,SLOT(addNew()));
-
     connect(ui->action_Open, SIGNAL(triggered(bool)), this, SLOT(open()));
-
-    generateMenu();
-    QVariant val = QVariant::fromValue((AbstractMenuItem *)mFairyMe);
-    AbstractMenuItem *test = val.value<AbstractMenuItem *>();
-
-    refreshMenu();
-
-    PrintVisitor consolePrintVisitor;
-    test->accept(consolePrintVisitor);
+    connect(ui->actionView_Example_Menu, SIGNAL(triggered()), this, SLOT(example()));
 }
 
 MainWindow::~MainWindow()
@@ -139,6 +129,13 @@ void MainWindow::open()
     delete mFairyMe;
     mFairyMe = new Menu(json["title"].toString().toStdString());
     loadMenu(json["children"].toArray(), mFairyMe);
+    refreshMenu();
+}
+
+void MainWindow::example()
+{
+    delete mFairyMe;
+    generateMenu();
     refreshMenu();
 }
 
