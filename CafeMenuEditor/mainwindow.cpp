@@ -27,6 +27,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionNew,SIGNAL(triggered()),this,SLOT(addNew()));
     connect(ui->action_Open, SIGNAL(triggered(bool)), this, SLOT(open()));
     connect(ui->actionView_Example_Menu, SIGNAL(triggered()), this, SLOT(example()));
+    connect(ui->action_About_Menu_Editor,SIGNAL(triggered()), this,SLOT(aboutMenu()));
+    connect(ui->actionAbout_Qt, SIGNAL(triggered()),this,SLOT(aboutQt()));
 }
 
 MainWindow::~MainWindow()
@@ -108,6 +110,18 @@ void MainWindow::example()
     delete mFairyMe;
     generateMenu();
     refreshMenu();
+}
+
+void MainWindow::aboutMenu()
+{
+    QMessageBox msg;
+    msg.information(this, "Menu Editor", "v.1.0", QMessageBox::Ok);
+}
+
+void MainWindow::aboutQt()
+{
+    QMessageBox msg;
+    msg.aboutQt(this, "about Qt");
 }
 
 
