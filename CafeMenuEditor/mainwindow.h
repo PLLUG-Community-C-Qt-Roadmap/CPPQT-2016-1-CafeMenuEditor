@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMessageBox>
 #include "abstractmenuitem.h"
 
 class Menu;
@@ -25,6 +26,8 @@ private slots:
     void addNew();
     void open();
     void example();
+    void aboutMenu();
+    void aboutQt();
 
 private:
     void generateMenu();
