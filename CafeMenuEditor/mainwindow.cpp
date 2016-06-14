@@ -13,6 +13,7 @@
 #include "menujsonloader.h"
 
 #include "visitor.h"
+#include "texteditprintvisitor.h"
 #include "fillcomboboxvisitor.h"
 
 MainWindow::MainWindow(QWidget *parent) :

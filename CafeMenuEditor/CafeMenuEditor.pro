@@ -23,7 +23,9 @@ SOURCES += main.cpp\
     visitor.cpp \
     fillcomboboxvisitor.cpp \
     editvisitorwidget.cpp \
-    menujsonloader.cpp
+    menujsonloader.cpp \
+    printvisitor.cpp \
+    texteditprintvisitor.cpp
 
 HEADERS  += mainwindow.h \
     menuitemeditor.h \
@@ -34,7 +36,9 @@ HEADERS  += mainwindow.h \
     visitor.h \
     fillcomboboxvisitor.h \
     editvisitorwidget.h \
-    menujsonloader.h
+    menujsonloader.h \
+    printvisitor.h \
+    texteditprintvisitor.h
 
 FORMS    += mainwindow.ui \
     menuitemeditor.ui \
