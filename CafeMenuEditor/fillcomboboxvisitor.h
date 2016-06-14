@@ -3,8 +3,8 @@
 
 #include "visitor.h"
 
-#include <stack>
 #include <QMetaType>
+#include <QStringList>
 
 class QComboBox;
 class AbstractMenuItem;
@@ -21,7 +21,7 @@ public:
 
 private:
     QComboBox *mComboBox;
-    std::stack<AbstractMenuItem *> mParentStack;
+    QStringList mParents;
 };
 
 Q_DECLARE_METATYPE(AbstractMenuItem *)

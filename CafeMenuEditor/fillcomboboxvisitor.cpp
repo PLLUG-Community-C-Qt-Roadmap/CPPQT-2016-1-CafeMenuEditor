@@ -18,29 +18,20 @@ FillComboBoxVisitor::FillComboBoxVisitor(QComboBox *comboBox)
 void FillComboBoxVisitor::visit(Menu *menu)
 {
     QString name = QString::fromStdString(menu->name());
-    mComboBox->addItem(name, QVariant::fromValue(static_cast<AbstractMenuItem *>(menu)));
+    mParents.append(name);
+    mComboBox->addItem(mParents.join("::"), QVariant::fromValue(static_cast<AbstractMenuItem *>(menu)));
 
-    mParentStack.push(menu);
     for (auto item : menu->items())
     {
         item->accept(*this);
     }
-    mParentStack.pop();
+
+    mParents.removeLast();
 }
 
 void FillComboBoxVisitor::visit(MenuItem *item)
 {
-    QStringList namesList;
-
-    std::stack<AbstractMenuItem *> parentStack{mParentStack};
-    while (!parentStack.empty())
-    {
-        auto item = parentStack.top();
-        namesList << QString::fromStdString(item->name());
-        parentStack.pop();
-    }
-    namesList << QString::fromStdString(item->name());
-
-    QString name = namesList.join("::");
-    mComboBox->addItem(name, QVariant::fromValue(static_cast<AbstractMenuItem *>(item)));
+    mParents << QString::fromStdString(item->name());
+    mComboBox->addItem(mParents.join("::"), QVariant::fromValue(static_cast<AbstractMenuItem *>(item)));
+    mParents.removeLast();
 }
