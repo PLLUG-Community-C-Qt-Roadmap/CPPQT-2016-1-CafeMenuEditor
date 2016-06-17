@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include "abstractmenuitem.h"
+#include "menueditor.h"
 
 class Menu;
 
@@ -28,6 +29,9 @@ private slots:
     void example();
     void aboutMenu();
     void aboutQt();
+
+public slots:
+    void showMe();
 
 private:
     void generateMenu();

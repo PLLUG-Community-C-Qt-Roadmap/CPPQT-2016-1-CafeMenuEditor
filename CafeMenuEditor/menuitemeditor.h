@@ -17,6 +17,11 @@ public:
 
 private:
     Ui::MenuItemEditor *ui;
+
+private slots:
+    void showN();
+
+
 };
 
 #endif // MENUITEMEDITOR_H

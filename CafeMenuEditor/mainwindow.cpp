@@ -10,6 +10,7 @@
 
 #include "menu.h"
 #include "menuitem.h"
+#include "menuitemeditor.h"
 #include "menujsonloader.h"
 
 #include "visitor.h"
@@ -23,13 +24,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     qRegisterMetaType<AbstractMenuItem *>("AbstractMenuItem *");
-    connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(addMenuItem()));
+//    connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(addMenuItem()));
     connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(selectMenuItem(int)));
-    connect(ui->actionNew,SIGNAL(triggered()),this,SLOT(addNew()));
+//    connect(ui->actionNew,SIGNAL(triggered()),this,SLOT(addNew()));
     connect(ui->action_Open, SIGNAL(triggered(bool)), this, SLOT(open()));
     connect(ui->actionView_Example_Menu, SIGNAL(triggered()), this, SLOT(example()));
     connect(ui->action_About_Menu_Editor,SIGNAL(triggered()), this,SLOT(aboutMenu()));
     connect(ui->actionAbout_Qt, SIGNAL(triggered()),this,SLOT(aboutQt()));
+//    connect(ui->pushButton,SIGNAL(clicked()),this,SLOT(showMe()));
 }
 
 MainWindow::~MainWindow()
@@ -123,6 +125,11 @@ void MainWindow::aboutQt()
 {
     QMessageBox msg;
     msg.aboutQt(this, "about Qt");
+}
+
+void MainWindow::showMe()
+{
+    ui->menuTextEdit->append("New");
 }
 
 
